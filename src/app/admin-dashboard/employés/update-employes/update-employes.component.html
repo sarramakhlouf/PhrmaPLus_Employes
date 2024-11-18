@@ -1,0 +1,70 @@
+<div class="container">
+    <div>
+        <h2>Modifier un employé :</h2>
+    </div>
+    <form [formGroup]="updateForm">
+        <!-- ID Employé -->
+        <div class="form-group">
+            <label>ID Employé :</label>
+            <input type="number" formControlName="id" class="form-control" readonly />
+            <span *ngIf="updateForm.controls['id'].hasError('required') && updateForm.controls['id'].touched"
+                class="text-danger">
+                L'id est requis.
+            </span>
+        </div>
+        <!-- Nom & Prénom -->
+        <div class="form-group">
+            <label>Nom & Prénom :</label>
+            <input type="text" formControlName="nom" class="form-control" />
+            <span *ngIf="updateForm.controls['nom'].hasError('minlength') && updateForm.controls['nom'].touched"
+                class="text-danger">
+                Le nom doit contenir au moins 3 caractères.
+            </span>
+            <span *ngIf="updateForm.controls['nom'].hasError('required') && updateForm.controls['nom'].touched"
+                class="text-danger">
+                Le nom est requis.
+            </span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>Email :</label>
+            <input type="email" formControlName="email" class="form-control" />
+            <span *ngIf="updateForm.controls['email'].hasError('required') && updateForm.controls['email'].touched"
+                class="text-danger">
+                L'email est requis.
+            </span>
+            <span *ngIf="updateForm.controls['email'].hasError('email') && updateForm.controls['email'].touched"
+                class="text-danger">
+                L'email doit être au format valide.
+            </span>
+        </div>
+        <!-- Numéro de téléphone -->
+        <div class="form-group">
+            <label>Numéro de téléphone :</label>
+            <input type="tel" formControlName="tel" class="form-control" />
+            <span *ngIf="updateForm.controls['tel'].hasError('required') && updateForm.controls['tel'].touched"
+                class="text-danger">
+                Le numéro de téléphone est requis.
+            </span>
+            <span *ngIf="updateForm.controls['tel'].hasError('phoneLength') && updateForm.controls['tel'].touched"
+                class="text-danger">
+                Le numéro doit comporter 10 chiffres.
+            </span>
+        </div>
+        <!-- Date de naissance -->
+        <div class="form-group">
+            <label>Date de naissance :</label>
+            <input type="date" formControlName="dateNaissanceEmploye" class="form-control" />
+            <span
+                *ngIf="updateForm.controls['dateNaissanceEmploye'].hasError('required') && updateForm.controls['dateNaissanceEmploye'].touched" 
+                class="text-danger">
+                La date de naissance est requise.
+            </span>
+        </div>
+        <!-- bouton -->
+        <div class="mt-2">
+            <button type="submit" (click)="updateEmploye()" class="btn btn-primary" [disabled]="updateForm.invalid">Modifier</button>
+        </div>
+    </form>
+</div>
